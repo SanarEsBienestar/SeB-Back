@@ -1,0 +1,67 @@
+{
+  "days_work": [
+    {
+      "id": 1,
+      "work_day": false,
+      "day": "Monday",
+      "hour_init": null,
+      "hour_finish": null
+    },
+    {
+      "id": 2,
+      "work_day": true,
+      "day": "Tuesday",
+      "hour_init": "08:00:00.000",
+      "hour_finish": "16:00:00.000"
+    },
+    {
+      "id": 3,
+      "work_day": true,
+      "day": "Wednesday",
+      "hour_init": "08:00:00.000",
+      "hour_finish": "16:00:00.000"
+    },
+    {
+      "id": 4,
+      "work_day": true,
+      "day": "Thursday",
+      "hour_init": "08:00:00.000",
+      "hour_finish": "16:00:00.000"
+    },
+    {
+      "id": 5,
+      "work_day": true,
+      "day": "Friday",
+      "hour_init": "08:00:00.000",
+      "hour_finish": "16:00:00.000"
+    },
+    {
+      "id": 6,
+      "work_day": true,
+      "day": "Saturday",
+      "hour_init": "08:00:00.000",
+      "hour_finish": "16:00:00.000"
+    },
+    {
+      "id": 7,
+      "work_day": false,
+      "day": "Sunday",
+      "hour_init": null,
+      "hour_finish": null
+    }
+  ],
+  "dates_off": [
+    {
+      "id": 20240126,
+      "date_off": "2024-01-26"
+    },
+    {
+      "id": 20240528,
+      "date_off": "2024-05-28"
+    },
+    {
+      "id": 20240512,
+      "date_off": "2024-05-12"
+    }
+  ]
+}
