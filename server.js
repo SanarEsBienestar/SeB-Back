@@ -2,6 +2,7 @@ import express from "express";
 import 'dotenv/config';
 import helmet from "helmet";
 import cors from "cors";
+import session from 'express-session';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import logger from "./src/config/logger.config.js"
@@ -23,11 +24,21 @@ const server = express();
 
 server.use(cors(corsOptions));
 server.use(helmet());
+server.use(session({
+    secret: process.env.JWT_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: process.env.NODE_ENV === 'production' } // Usar cookies seguras solo en producción
+}));
 
 //Import routes to Use
+import authRoutes from "./src/routes/auth.js";
 import serviceRoutes from "./src/routes/services.js"
 import productRoutes from "./src/routes/products.js"
 import avialabilityRoutes from "./src/routes/availability.js"
+import reservationRoutes from "./src/routes/reservations.js"
+import salesRoutes from "./src/routes/sales.js"
+
 
 server.use(express.json());
 
@@ -39,9 +50,12 @@ server.get('/', (req, res) => {
 });
 
 //Endpoint Routes
+server.use("/api/v1/auth/", authRoutes);
 server.use("/api/v1/services/", serviceRoutes);
 server.use("/api/v1/products/", productRoutes);
 server.use("/api/v1/availability/", avialabilityRoutes);
+server.use("/api/v1/reservation/", reservationRoutes);
+server.use("/api/v1/sales/", salesRoutes);
 
 //Server Port Start
 server.listen(port, () => {

@@ -2,7 +2,18 @@
 import * as methods from "../lib/crudMethod.js"
 import { generateUUID } from "../lib/keyGen.js"
 import logger from "../config/logger.config.js"
-import { error } from "winston"
+
+//List all reservation data
+export const listAllReservations = async (req, res) => {
+    try {
+        const result = await methods.listAll("*", "reservations_data")
+        return res.status(200).json({ message: "Success", data: result})
+    }
+    catch (error) {
+        logger.error(error)
+        return res.status(500).json({ message: "Internal server error" })
+    }
+}
 
 //List reservation by param
 export const listReservationsBy = async (req, res) => {
@@ -15,7 +26,7 @@ export const listReservationsBy = async (req, res) => {
         return res.status(400).json({ message: "Bad request" })
     }
     try {
-        const result = await methods.listWhere("*", querys, "reservations")
+        const result = await methods.listWhere("*", querys, "reservations_data")
         return res.status(200).json({ message: "Success", data: result})
     }
     catch (error) {
@@ -32,7 +43,7 @@ export const listReservationsStatus = async (req, res) => {
         return res.status(400).json({ message: "Bad request" })
     }
     try {
-        const result = await methods.listWhere("*", status, "reservations")
+        const result = await methods.listWhere("*", status, "reservations_data")
         return res.status(200).json({ message: "Success", data: result})
     }
     catch{

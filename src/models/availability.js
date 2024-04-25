@@ -87,3 +87,33 @@ export const addDateOff = async (req, res) => {
         res.status(500).send("Error adding new date off.")
     }
 }
+
+
+export const deleteDateOff = async (req, res) => {
+    const { date_off } = req.params;  // Asumiendo que la fecha viene como parámetro en la ruta
+
+    try {
+        const fileContent = fs.readFileSync(dataPath, 'utf-8');
+        const jsonData = JSON.parse(fileContent);
+
+        // Convertir la fecha 'yyyy-mm-dd' a 'yyyymmdd' para usar como ID
+        const id = parseInt(date_off.replace(/-/g, ''));
+
+        // Verificar si la fecha existe en el arreglo 'dates_off'
+        const index = jsonData.dates_off.findIndex(date => date.id === id);
+        if (index === -1) {
+            res.status(404).send("Date off does not exist.");
+            return;
+        }
+
+        // Eliminar la fecha del arreglo
+        jsonData.dates_off.splice(index, 1);
+
+        // Escribir los cambios de vuelta al archivo JSON
+        fs.writeFileSync(dataPath, JSON.stringify(jsonData, null, 2), 'utf-8');
+        res.status(200).send("Date off deleted successfully.");
+    } catch (error) {
+        logger.error("Error deleting date off: ", error);
+        res.status(500).send("Error deleting date off.");
+    }
+};

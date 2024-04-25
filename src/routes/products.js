@@ -1,20 +1,21 @@
-import * as models from '../models/products.js';
+import * as models from '../models/products.js'
+import { verifyToken } from '../lib/verifyAccess.js'
+import { requestData } from '../lib/requestData.js'
 import express, { Router } from 'express'
-
 
 const router = Router()
 
 // List all Products
-router.get('/', models.listAllProducts)
+router.get('/', requestData, models.listAllProducts)
 
 // List one product by param
-router.get('/:id', models.getProductById)
+router.get('/:id', requestData, models.getProductById)
 
 // Create new Product
-router.post('/new', models.createProduct) 
+router.post('/new', requestData, verifyToken, models.createProduct) 
 
 // Update Product
-router.put('/update/:id', models.updateProductById)
+router.put('/update/:id', requestData, verifyToken, models.updateProductById)
 
 
 export default router
