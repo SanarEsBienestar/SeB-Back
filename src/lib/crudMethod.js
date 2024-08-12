@@ -1,29 +1,29 @@
-import { connection } from '../config/connection.config.js';
+import { connection } from '../config/connection.config.js'
 
 export const listAll = (columns, table_name) => {
     return connection(table_name)
-        .select(columns);
+        .select(columns)
 }
 
 export const listWhere = (columns, params = {}, table_name) => {
     return connection(table_name)
         .select(columns)
-        .where(params);
-};
+        .where(params)
+}
 
 export const create = (object, table_name) => {
     return connection(table_name)
-        .insert(object);
-};
+        .insert(object)
+}
 
 export const update = (params, object, table_name) => {
     return connection(table_name)
         .where(params)
-        .update(object);   
-};
+        .update(object)   
+}
 
 export const deleteWhere = (params = {}, table_name) => {
     return connection(table_name)
         .where(params)
-        .del();
-};
+        .del()
+}

@@ -38,6 +38,7 @@ import productRoutes from "./src/routes/products.js"
 import avialabilityRoutes from "./src/routes/availability.js"
 import reservationRoutes from "./src/routes/reservations.js"
 import salesRoutes from "./src/routes/sales.js"
+import linksRoutes from "./src/routes/links.js"
 
 
 server.use(express.json());
@@ -56,6 +57,7 @@ server.use("/api/v1/products/", productRoutes);
 server.use("/api/v1/availability/", avialabilityRoutes);
 server.use("/api/v1/reservation/", reservationRoutes);
 server.use("/api/v1/sales/", salesRoutes);
+server.use("/api/v1/links/", linksRoutes);
 
 //Server Port Start
 server.listen(port, () => {
